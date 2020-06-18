@@ -1,8 +1,4 @@
 #!/bin/bash
-sudo su
-
-#clonar repositorio
-git clone https://github.com/ncamposleal/gianmonkeyrobottestqueue.git monkey-test-back
 
 composer update 
 
@@ -13,3 +9,4 @@ chmod -R 777 .
 
 # Inicia los Jobs Creados
 php artisan queue:work --queue=high,low
+echo "running queue job"

@@ -41,12 +41,12 @@ class TaskController extends Controller
      * @OA\RequestBody(
      *     description="Nuevo trabajo a guardar",
      *     required=true,
-     *     @OA\JsonContent(example={"command": "Comando a ejecutar de la tarea"}),
+     *     @OA\JsonContent(example={"command": "sleep 2 && mkdir ./oooooo"}),
      * ),
      * @OA\Parameter(
      *     name="priority",
      *     required=false,
-     *     in="query",
+     *     in="path",
      *     description="Prioridad del trabajo HIGH || LOW",
      *     @OA\Schema(
      *         type="string"
@@ -73,7 +73,7 @@ class TaskController extends Controller
         
         $task = new Task;
         $task->command = $request->command;
-        $task->priority = $priority;
+        $task->priority = strtolower($priority) == "high" ? "high" : "low";
         $task->submitter_id = Auth::user()["id"];
         //Guardamos el cambio en nuestro modelo
         $task->save();
@@ -124,7 +124,7 @@ class TaskController extends Controller
      * @OA\RequestBody(
      *     description="Nuevo comando a actualizar",
      *     required=true,
-     *     @OA\JsonContent(example={"command": "valor a actualizar"}),
+     *     @OA\JsonContent(example={"command": "sleep 2 && mkdir ./oooooo"}),
      * ),
      *      * @OA\Parameter(
      *     name="id",

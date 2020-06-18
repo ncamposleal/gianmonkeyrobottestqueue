@@ -33,7 +33,7 @@
                 "parameters": [
                     {
                         "name": "priority",
-                        "in": "query",
+                        "in": "path",
                         "description": "Prioridad del trabajo HIGH || LOW",
                         "required": false,
                         "schema": {
@@ -48,7 +48,7 @@
                         "application/json": {
                             "schema": {},
                             "example": {
-                                "command": "Comando a ejecutar de la tarea"
+                                "command": "sleep 2 && mkdir ./oooooo"
                             }
                         }
                     }
@@ -142,7 +142,7 @@
                         "application/json": {
                             "schema": {},
                             "example": {
-                                "command": "valor a actualizar"
+                                "command": "sleep 2 && mkdir ./oooooo"
                             }
                         }
                     }
