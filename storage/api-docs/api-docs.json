@@ -1,0 +1,293 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Queues",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/monkey-test-back/public/index.php"
+        }
+    ],
+    "paths": {
+        "/api/task": {
+            "get": {
+                "summary": "Lista todos los trabajos",
+                "operationId": "App\\Http\\Controllers\\TaskController::index",
+                "responses": {
+                    "200": {
+                        "description": "Muestra todos los trabajos."
+                    }
+                },
+                "security": [
+                    {
+                        "Authorizathion": []
+                    }
+                ]
+            }
+        },
+        "/api/task/{priority?}": {
+            "post": {
+                "summary": "Guarda un nuevo trabajo",
+                "operationId": "App\\Http\\Controllers\\TaskController::store",
+                "parameters": [
+                    {
+                        "name": "priority",
+                        "in": "query",
+                        "description": "Prioridad del trabajo HIGH || LOW",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Nuevo trabajo a guardar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "command": "Comando a ejecutar de la tarea"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Muestra todos los trabajos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Task": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "No Authenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorizathion": []
+                    }
+                ]
+            }
+        },
+        "/api/task/{id}": {
+            "get": {
+                "summary": "Obtiene el trabajo segun id",
+                "operationId": "App\\Http\\Controllers\\TaskController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Id del  trabajo a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra un trabajo segun id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Task": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "No Authenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorizathion": []
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Actualiza el comando del trabajo segun id",
+                "operationId": "App\\Http\\Controllers\\TaskController::update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Id del trabajo",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Nuevo comando a actualizar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "command": "valor a actualizar"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Muestra un trabajo segun id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Task": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "No Authenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorizathion": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Borra un trabajo segun id",
+                "operationId": "App\\Http\\Controllers\\TaskController::destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Id del  trabajo a borrar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Id del trabajo eliminado.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Task": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "No Authenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorizathion": []
+                    }
+                ]
+            }
+        },
+        "/api/task/average": {
+            "get": {
+                "summary": "Obtiene un promedio de finalizacion de trabajos",
+                "operationId": "App\\Http\\Controllers\\TaskController::average",
+                "responses": {
+                    "200": {
+                        "description": "Tiempo de promedio de respuesta."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Task": {
+                "required": [
+                    "command"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "created_at": {
+                        "type": "timestamp",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "timestamp",
+                        "format": "date-time"
+                    },
+                    "submitter_id": {
+                        "type": "string"
+                    },
+                    "processor_id": {
+                        "type": "string"
+                    },
+                    "command": {
+                        "type": "string"
+                    },
+                    "execution_time": {
+                        "type": "decimal"
+                    },
+                    "priority": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "required": [
+                    "id",
+                    "email",
+                    "api_token"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "api_token": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "Authorizathion": {
+                "type": "apiKey",
+                "description": "Api del usuario",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
