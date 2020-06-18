@@ -17,7 +17,7 @@ class DefaultUser extends Migration
         $user->password = Hash::make('123456');
         $user->email = 'test@test.com';
         $user->name = 'Giant Monkey Robot';
-        $user->api_token = Str::random(60);
+        $user->api_token = 'yQNEKsH0b0x1qllkk1W7czq6hKE62jdTckqj7GgU5IMYtElu4JTpuwl6ZHYj';
         $user->email_verified_at = time();
         $user->save();
     }

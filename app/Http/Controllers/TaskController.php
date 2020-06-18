@@ -24,7 +24,7 @@ class TaskController extends Controller
      *         description="Muestra todos los trabajos."
      *     ),
      * security={{
-     *     "Authorizathion":{}
+     *     "Authorization":{}
      *   }}
      * )
      */
@@ -63,7 +63,7 @@ class TaskController extends Controller
      * ),
      *     @OA\Response(response=403, description="No Authenticado"),
      * security={{
-     *     "Authorizathion":{}
+     *     "Authorization":{}
      *   }}
      * )"
      */
@@ -107,7 +107,7 @@ class TaskController extends Controller
      * ),
      *     @OA\Response(response=403, description="No Authenticado"),
      * security={{
-     *     "Authorizathion":{}
+     *     "Authorization":{}
      *   }}
      * )"
      */
@@ -145,7 +145,7 @@ class TaskController extends Controller
      * ),
      *     @OA\Response(response=403, description="No Authenticado"),
      * security={{
-     *     "Authorizathion":{}
+     *     "Authorization":{}
      *   }}
      * )"
      */
@@ -182,7 +182,7 @@ class TaskController extends Controller
      * ),
      *     @OA\Response(response=403, description="No Authenticado"),
      * security={{
-     *     "Authorizathion":{}
+     *     "Authorization":{}
      *   }}
      * )"
      */

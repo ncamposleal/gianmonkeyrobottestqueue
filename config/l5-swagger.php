@@ -123,11 +123,12 @@ return [
     |--------------------------------------------------------------------------
     */
     'security' => [
-        'Authorizathion' => [ 
+        'Authorization' => [ 
             'type' => 'apiKey', 
             'description' => 'Api del usuario',
             'name' => 'Authorization', 
             'in' => 'header',
+            "value" => "yQNEKsH0b0x1qllkk1W7czq6hKE62jdTckqj7GgU5IMYtElu4JTpuwl6ZHYj"
         ]
         /*
         |--------------------------------------------------------------------------

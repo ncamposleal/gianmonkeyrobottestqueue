@@ -11,7 +11,7 @@ class ApiAuthentication
     {
         Log::info('Iniciando Validacion de usuario');
         $token = $request->header('Authorization');
-        Log::info('Header authorization' .$token);
+        Log::info('Header authorization:' .$token);
         $user = \App\User::where('api_token', $token)->first();
         if ($user) {
             Log::info('Usuario existe'.$user);
