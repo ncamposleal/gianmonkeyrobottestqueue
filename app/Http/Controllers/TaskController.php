@@ -49,7 +49,8 @@ class TaskController extends Controller
      *     in="path",
      *     description="Prioridad del trabajo HIGH || LOW",
      *     @OA\Schema(
-     *         type="string"
+     *         type="string",
+     *         example="low" 
      *     )
      *   ),
      * 
@@ -93,7 +94,8 @@ class TaskController extends Controller
      *     in="query",
      *     description="Id del  trabajo a obtener",
      *     @OA\Schema(
-     *         type="string"
+     *         type="string",
+     *         example="1" 
      *     )
      *   ),
      * 
@@ -132,7 +134,8 @@ class TaskController extends Controller
      *     in="query",
      *     description="Id del trabajo",
      *     @OA\Schema(
-     *         type="string"
+     *         type="string",
+     *         example="1" 
      *     )
      *   ),
      *     @OA\Response(
@@ -153,6 +156,9 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
+        if($task == 0)
+            return response()->json(["data" => "sin registros por id ".$id]);
+
         $task->command = $request->command;
         $task->save();
 
@@ -166,10 +172,11 @@ class TaskController extends Controller
      * @OA\Parameter(
      *     name="id",
      *     required=true,
-     *     in="query",
+     *     in="path",
      *     description="Id del  trabajo a borrar",
      *     @OA\Schema(
-     *         type="string"
+     *         type="string",
+     *         example="1" 
      *     )
      *   ),
      *     @OA\Response(
@@ -189,7 +196,11 @@ class TaskController extends Controller
     public function destroy($id)
     {
         $task = Task::find($id);
-        return response()->json(["data" => $task->delete()]);
+        if($task > 0)
+            return response()->json(["data" => $task->delete()]);
+        
+        return response()->json(["data" => "sin registros por id ".$id]);
+        
     }
 
     /**

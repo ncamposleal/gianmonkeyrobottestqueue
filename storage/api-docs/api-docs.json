@@ -37,7 +37,8 @@
                         "description": "Prioridad del trabajo HIGH || LOW",
                         "required": false,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "low"
                         }
                     }
                 ],
@@ -91,7 +92,8 @@
                         "description": "Id del  trabajo a obtener",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "1"
                         }
                     }
                 ],
@@ -131,7 +133,8 @@
                         "description": "Id del trabajo",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "1"
                         }
                     }
                 ],
@@ -179,11 +182,12 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "query",
+                        "in": "path",
                         "description": "Id del  trabajo a borrar",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "example": "1"
                         }
                     }
                 ],
