@@ -32,7 +32,7 @@
                 "operationId": "App\\Http\\Controllers\\TaskController::store",
                 "parameters": [
                     {
-                        "name": "priority",
+                        "name": "priority?",
                         "in": "path",
                         "description": "Prioridad del trabajo HIGH || LOW",
                         "required": false,
@@ -88,7 +88,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "query",
+                        "in": "path",
                         "description": "Id del  trabajo a obtener",
                         "required": true,
                         "schema": {
@@ -129,7 +129,7 @@
                 "parameters": [
                     {
                         "name": "id",
-                        "in": "query",
+                        "in": "path",
                         "description": "Id del trabajo",
                         "required": true,
                         "schema": {

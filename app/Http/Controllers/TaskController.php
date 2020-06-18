@@ -44,7 +44,7 @@ class TaskController extends Controller
      *     @OA\JsonContent(example={"command": "sleep 2 && mkdir ./oooooo"}),
      * ),
      * @OA\Parameter(
-     *     name="priority",
+     *     name="priority?",
      *     required=false,
      *     in="path",
      *     description="Prioridad del trabajo HIGH || LOW",
@@ -91,7 +91,7 @@ class TaskController extends Controller
      * @OA\Parameter(
      *     name="id",
      *     required=true,
-     *     in="query",
+     *     in="path",
      *     description="Id del  trabajo a obtener",
      *     @OA\Schema(
      *         type="string",
@@ -116,6 +116,10 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::find($id);
+
+        if($task == null)
+            return response()->json(["data" => "sin registros por id ".$id]);
+
         return response()->json(['data' => $task], 200);
     }
 
@@ -131,7 +135,7 @@ class TaskController extends Controller
      *      * @OA\Parameter(
      *     name="id",
      *     required=true,
-     *     in="query",
+     *     in="path",
      *     description="Id del trabajo",
      *     @OA\Schema(
      *         type="string",
@@ -156,7 +160,7 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
 
-        if($task == 0)
+        if($task == null)
             return response()->json(["data" => "sin registros por id ".$id]);
 
         $task->command = $request->command;
@@ -196,10 +200,10 @@ class TaskController extends Controller
     public function destroy($id)
     {
         $task = Task::find($id);
-        if($task > 0)
-            return response()->json(["data" => $task->delete()]);
+        if($task == null)
+            return response()->json(["data" => "sin registros por id ".$id]);
         
-        return response()->json(["data" => "sin registros por id ".$id]);
+        return response()->json(["data" => $task->delete()]);
         
     }
 
