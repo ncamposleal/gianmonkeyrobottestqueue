@@ -47,9 +47,12 @@
                     "required": true,
                     "content": {
                         "application/json": {
-                            "schema": {},
-                            "example": {
-                                "command": "sleep 2 && mkdir ./oooooo"
+                            "schema": {
+                                "items": {
+                                    "example": {
+                                        "command": "sleep 2 && mkdir ./oooooo"
+                                    }
+                                }
                             }
                         }
                     }

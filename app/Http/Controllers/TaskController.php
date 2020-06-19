@@ -41,7 +41,9 @@ class TaskController extends Controller
      * @OA\RequestBody(
      *     description="Nuevo trabajo a guardar",
      *     required=true,
-     *     @OA\JsonContent(example={"command": "sleep 2 && mkdir ./oooooo"}),
+     *     @OA\JsonContent(
+     *      @OA\Items(example={"command": "sleep 2 && mkdir ./oooooo"})
+     *  ),
      * ),
      * @OA\Parameter(
      *     name="priority?",
@@ -72,16 +74,16 @@ class TaskController extends Controller
     {
         Log::info("Auth::user()".Auth::user()["id"]);
         
-        $task = new Task;
-        $task->command = $request->command;
-        $task->priority = strtolower($priority) == "high" ? "high" : "low";
-        $task->submitter_id = Auth::user()["id"];
-        //Guardamos el cambio en nuestro modelo
-        $task->save();
+        foreach($request->all() as $job){
+            $task = new Task;
+            $task->command = $job["command"];
+            $task->priority = strtolower($priority) == "high" ? "high" : "low";
+            $task->submitter_id = Auth::user()["id"];
+            $task->save();
+            ProcessCommands::dispatch($task)->onQueue(strtolower($priority) == "high" ? "high" : "low");
+        }
 
-        ProcessCommands::dispatch($task)->onQueue(strtolower($priority) == "high" ? "high" : "low");
-
-        return response()->json(['data' => $task], 202);
+        return response()->json(['data' => $request->all()], 202);
     }
 
         /**
