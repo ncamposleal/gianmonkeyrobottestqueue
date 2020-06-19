@@ -9,3 +9,7 @@ Para iniciar se puede ejecutar el comando start.sh el cual inicia tambien el job
 
 Documentacion swagger 
 http://localhost/monkey-test-back/public/index.php/api/documentation
+
+Para la documentacion clonar el repo usando
+git clone https://github.com/ncamposleal/gianmonkeyrobottestqueue.git monkey-test-back
+Esta configurado con ese nombre para el uso de los testing. 
