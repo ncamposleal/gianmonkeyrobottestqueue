@@ -74,16 +74,19 @@ class TaskController extends Controller
     {
         Log::info("Auth::user()".Auth::user()["id"]);
         
+        $tasks = [];
         foreach($request->all() as $job){
             $task = new Task;
             $task->command = $job["command"];
             $task->priority = strtolower($priority) == "high" ? "high" : "low";
             $task->submitter_id = Auth::user()["id"];
             $task->save();
+            
+            $tasks[] = $task;
             ProcessCommands::dispatch($task)->onQueue(strtolower($priority) == "high" ? "high" : "low");
         }
 
-        return response()->json(['data' => $request->all()], 202);
+        return response()->json($tasks, 202);
     }
 
         /**
