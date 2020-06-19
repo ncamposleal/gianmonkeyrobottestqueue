@@ -1,7 +1,4 @@
 
-git clone https://github.com/ncamposleal/gianmonkeyrobottestqueue.git monkey-test-back
-(IMPORTANTE USAR ESTE NOMBRE)
-
 Para iniciar el proyecto se debe realizar en un ambiente lamp, Clonar el repo en htdocs 
 Ademas se debe crear una base de datos por defecto es "laravel" con el usuario root y password (Estos se modifican en el archivo .env)
 
