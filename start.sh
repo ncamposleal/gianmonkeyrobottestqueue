@@ -4,7 +4,6 @@ composer update
 
 php artisan migrate
 
-php artisan l5-swagger:generate
 chmod -R 777 .
 
 # Inicia los Jobs Creados
